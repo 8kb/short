@@ -7,7 +7,7 @@ Language strings are placed in a separate block, for ease of translation / adapt
 Templates are separated from logic.
 The script saves not only the information necessary for the work, but also the time when the link was created, the IP created the link and the time the link was last used (updated each time the link is clicked). Added for administration needs. Is present only in the database, and is not used by the script.
 
-#Installation
+# Installation
 To install, edit the config.cfg file.
 Set the installation flag (if not installed).
 Go to the site.
