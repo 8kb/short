@@ -23,22 +23,22 @@ function showMany($data)
 
 function addAsset($type, $value)
 {
-    \view\Template::addAsset($type, $value);    
+    \view\Assets::addAsset($type, $value);    
 }
 
 function assetStart()
 {
-    \view\Template::assetStart();    
+    \view\Assets::assetStart();    
 }
 
 function assetEnd($type)
 {
-    \view\Template::assetEnd($type);
+    \view\Assets::assetEnd($type);
 }
 
 function assets($type)
 {
-    return \view\Template::getAssets($type);
+    return \view\Assets::getAssets($type);
 }
 
 function haveStr($str, $needle)
