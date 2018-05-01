@@ -1,0 +1,17 @@
+RewriteEngine on
+Options +FollowSymlinks
+RewriteBase /
+
+#301 from www to non-www(https)
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+# slash
+RewriteRule ^(.+)/$ /$1 [R=301,L] 
+
+# Main script
+RewriteCond %{REQUEST_FILENAME} !bootstrap\.php$
+RewriteRule ^.*$ /bootstrap.php [L,QSA]
+
+<ifModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml application/xhtml+xml text/css text/javascript application/javascript application/x-javascript
+</ifModule>
