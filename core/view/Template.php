@@ -14,33 +14,39 @@ class Template
 {
     public static $templateFolder;
     public static $globalVar;
-    protected static $template;
+    protected $template;
+    protected $data;
     
-    public static function render($template, $data = [])
+    public function __construct($template, $data = [])
     {
-        static::$template = $template;
-        $_ = new Lang(static::$template);
+        $this->template = $template;
+        $this->data = $data;
+    }
+
+    public function render()
+    {
+        $_ = new Lang($this->template);
         extract(static::$globalVar);
-        extract($data);
-        if(!static::templateExists(static::$template)) {
-            throw new \Exception('Unknown template ' . static::$template);
+        extract($this->data);
+        if(!$this->exist()) {
+            throw new \Exception('Unknown template ' . $this->template);
         }
         //
         ob_start();
-        require static::getTemplateFilename(static::$template);
+        require $this->getFilename($this->template);
         $result = ob_get_contents();
         ob_end_clean();
         return $result;
     }
     
-    protected static function getTemplateFilename($template)
+    protected function getFilename($template)
     {
         return static::$templateFolder . $template . '.php';
     }
 
-    public static function templateExists($template)
+    public function exist()
     {
-        $filename = static::getTemplateFilename($template);
+        $filename = $this->getFilename($this->template);
         return file_exists($filename);
     }
 }

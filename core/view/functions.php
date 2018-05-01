@@ -3,14 +3,10 @@
  * @copyright (c) 2018 Mendel <mendel@zzzlab.com>
  * @license see license.txt
  */
-function template($template, $data = [])
+function template($templateName, $data = [])
 {
-    return \view\Template::render($template, $data);
-}
-
-function templateExists($template)
-{
-    return \view\Template::templateExists($template);
+    $template = new \view\Template($templateName, $data);
+    return $template->render();
 }
 
 function showMany($data)

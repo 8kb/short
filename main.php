@@ -4,9 +4,9 @@ if ($path == '/index') {
 } elseif ($path == '/') {
     echo template('app/short/index');
 } elseif (startFrom($path, '/page')) {
-    $template = 'app'. $path;
-    if(templateExists($template)) {
-        echo template($template);
+    $template = new \view\Template('app'. $path);
+    if($template->exist()) {
+        echo $template->render();
     } else {
         throw new \http\NotFoundException();
     }    
