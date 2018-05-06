@@ -1,0 +1,12 @@
+{
+    "form": {
+        "title": "Shorturl service",
+        "header": "Enter your url",
+        "text": "Some text"
+    },
+    "result": {
+        "title": "Shorturl service",
+        "header": "Short url",
+        "text": "Some text"    
+    }
+}

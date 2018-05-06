@@ -3,19 +3,19 @@
  * @copyright (c) 2018 Mendel <mendel@zzzlab.com>
  * @license see license.txt
  */
-namespace http;
+namespace util\http;
 
 /**
  *
  *
  * @author Mendel <mendel@zzzlab.com>
  */
-class Post extends SafeArray
+class Get extends \util\SafeArray
 {
     public function __construct()
     {
-        if(isset($_POST)) {
-            $array = $_POST;
+        if(isset($_GET)) {
+            $array = $_GET;
         } else {
             $array = [];
         }

@@ -1,16 +1,12 @@
 <?php
-if ($path == '/index') {
-    throw new \http\NotFoundException(); // stop copy at SERP (for SEO)
-} elseif ($path == '/') {
-    echo template('app/short/index');
-} elseif (startFrom($path, '/page')) {
-    $template = new \view\Template('app'. $path);
-    if($template->exist()) {
-        echo $template->render();
-    } else {
-        throw new \http\NotFoundException();
-    }    
+$pathParts = explode('/', $path);
+if ($path == '') {
+    action('index');
+} elseif (count($pathParts) == 1) { // count($pathParts) == 1 and $pathParts[0] != 'index'
+//    action($pathParts[0]);
+    action('redirect', ['shortId'=>$path]);
+} elseif(count($pathParts) == 2) {
+    action($pathParts[0].':'.$pathParts[1]);
 } else {
-    $shortId = substr($path, 1); // remove first char
-    echo template('app/short/redirect', ['shortId'=>$shortId]);
+    throw new \util\http\NotFoundException();
 }

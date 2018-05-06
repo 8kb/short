@@ -30,7 +30,7 @@ p {
 </style>
 <?php assetEnd('headStyle');?>
 <header class="container-fluid">
-    <?= template('templ/layout/topMenu', ['menu'=>$topMenu]);?>
+    <?= template('layout/topMenu', ['menu'=>$topMenu]);?>
 </header>
 <section class="container">
     <div class="row">
@@ -38,7 +38,7 @@ p {
             <?= $content;?>
         </div>
         <aside class="col-md-4 col-xs-12">
-            <?= template('templ/layout/sidebarMenu', ['menu'=>$sidebarMenu]);?>
+            <?= template('layout/sidebarMenu', ['menu'=>$sidebarMenu]);?>
         </aside>
     </div>
 </section>

@@ -6,25 +6,28 @@
 $config = require_once 'config.php';
 define('HOME', dirname(__FILE__));
 // 
-require 'core/autoload.php';
-require 'core/error.php';
-require_once 'core/view/functions.php';
-require_once 'core/http/functions.php';
-// configurate core
-\view\Template::$templateFolder = dirname(__FILE__).'/';
-\view\Lang::$langFolder = dirname(__FILE__).'/lang/';
-//
-\view\Template::$globalVar['config'] = $config['app'];
+require 'vendor/autoload.php';
+require 'vendor/8kb/util/error.php';
+require_once 'vendor/8kb/view/functions.php';
+require_once 'vendor/8kb/util/functions.php';
+// configurate view
+\view\Template::$templateFolder = dirname(__FILE__).'/templ/';
+\view\Template::$globalVar['config'] = $config['template'];
+// configure lang
+\lang\Lang::$langFolder = dirname(__FILE__).'/lang/';
+// configure controller
+\util\Controller::$globalVar['config'] = $config['app'];
+// configure DAO
 $db = new \dao\mysql\Dao(
         $config['db']['host'],
         $config['db']['baseName'],
         $config['db']['username'],
         $config['db']['password']
     );
-\view\Template::$globalVar['db'] = $db;
+\util\Controller::$globalVar['db'] = $db;
 //
 if(isset($config['install']) and $config['install']) {
-    echo template('install');
+    action('install:install');
 } else {
-    require 'core/mainLoop.php';
+    require 'vendor/8kb/util/mainLoop.php';
 }

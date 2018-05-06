@@ -25,7 +25,7 @@ class Template
 
     public function render()
     {
-        $_ = new Lang($this->template);
+        $_ = new \lang\Lang('/templ/' . $this->template);
         extract(static::$globalVar);
         extract($this->data);
         if(!$this->exist()) {

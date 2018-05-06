@@ -1,5 +1,5 @@
 <?php
-namespace http;
+namespace util\http;
 
 /**
  * Not found exception
