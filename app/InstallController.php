@@ -10,9 +10,9 @@ namespace app;
  *
  * @author Mendel <mendel@zzzlab.com>
  */
-class InstallController extends \util\Controller
+class InstallController extends \mybrand\controller\AbstractController
 {
-    public function installAction()
+    public function defaultAction()
     {
         $this->db->executeWrite('
             CREATE TABLE IF NOT EXISTS `short` (
@@ -25,8 +25,11 @@ class InstallController extends \util\Controller
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT = 100;
         ',[]);
         echo template('minimalLayout', [
-            'title'=>$_->title,
-            'content'=> template('article', ['header'=>$_->header, 'text'=>$_->text]),
+            'title'=>$this->lang->title,
+            'content'=> template('article', [
+                'header'=>$this->lang->header,
+                'text'=>$this->lang->text
+            ]),
         ]);
     }
 }

@@ -10,9 +10,9 @@ namespace app;
  *
  * @author Mendel <mendel@zzzlab.com>
  */
-class ErrorController extends \util\Controller
+class ErrorController extends \mybrand\controller\AbstractController
 {
-    protected function notfoundAction()
+    public function notfoundAction()
     {
         echo template('layout', [
             'title'=>$this->lang->title,
@@ -23,7 +23,7 @@ class ErrorController extends \util\Controller
         ]);
     }
     
-    protected function forbiddenAction()
+    public function forbiddenAction()
     {
         echo template('layout', [
             'title'=>$this->lang->title,
@@ -34,7 +34,7 @@ class ErrorController extends \util\Controller
         ]);
     }
     
-    protected function internalAction()
+    public function internalAction()
     {
         echo template('minimalLayout', [
             'title'=>$this->lang->title,

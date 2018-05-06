@@ -8,7 +8,7 @@ spl_autoload_register(function ($class) {
     if($parts[0] == 'app') {
         $filename = HOME.'/'.implode('/', $parts).'.php';
     } else {
-        $filename = HOME.'/vendor/8kb/'.implode('/', $parts).'.php';
+        $filename = HOME.'/vendor/'.implode('/', $parts).'.php';
     }
     if (file_exists($filename)) {
         require_once($filename);

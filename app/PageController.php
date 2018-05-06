@@ -10,7 +10,7 @@ namespace app;
  *
  * @author Mendel <mendel@zzzlab.com>
  */
-class PageController extends \util\Controller
+class PageController extends \mybrand\controller\AbstractController
 {
     public function aboutAction()
     {

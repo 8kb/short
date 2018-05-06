@@ -10,7 +10,7 @@ namespace app;
  *
  * @author Mendel <mendel@zzzlab.com>
  */
-class IndexController extends \util\Controller
+class IndexController extends \mybrand\controller\AbstractController
 {
     public function defaultAction()
     {
