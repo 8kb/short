@@ -2,3 +2,6 @@
 /config.php
 /correctPSR.bat
 /testPSR.bat
+/vendor/mybrand/http/Session.php
+/vendor/mybrand/http/Xsrf.php
+/vendor/mybrand/http/XsrfException.php

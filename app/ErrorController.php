@@ -6,12 +6,15 @@
 namespace app;
 
 /**
- *
+ * Error controller
  *
  * @author Mendel <mendel@zzzlab.com>
  */
 class ErrorController extends \mybrand\controller\AbstractController
 {
+    /**
+     * Action if page not found
+     */
     public function notfoundAction()
     {
         echo template('layout', [
@@ -23,6 +26,9 @@ class ErrorController extends \mybrand\controller\AbstractController
         ]);
     }
     
+    /**
+     * Action if access denied
+     */
     public function forbiddenAction()
     {
         echo template('layout', [
@@ -34,6 +40,9 @@ class ErrorController extends \mybrand\controller\AbstractController
         ]);
     }
     
+    /**
+     * Action if internal error
+     */
     public function internalAction()
     {
         echo template('minimalLayout', [

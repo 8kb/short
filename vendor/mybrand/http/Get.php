@@ -6,12 +6,15 @@
 namespace mybrand\http;
 
 /**
- *
+ * Safe _GET array
  *
  * @author Mendel <mendel@zzzlab.com>
  */
-class Get extends \mybrand\util\SafeArray
+class Get extends SafeArray
 {
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         if (isset($_GET)) {

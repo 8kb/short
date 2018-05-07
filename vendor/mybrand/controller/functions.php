@@ -4,8 +4,19 @@
  * @license see license.txt
  */
 
-function action(string $route, $param = [])
+/**
+ * Execute action
+ * @param string $route action route
+ * @param array $parameters action parameters
+ */
+function action(string $route, array $parameters = [])
 {
-    \mybrand\controller\Factory::doAction($route, $param);
-    ;
+    if (haveStr($route, ':')) {
+        list($controllerName, $action) = explode(':', $route, 2);
+    } else {
+        $controllerName = $route;
+        $action = 'default';
+    }
+    $controller = \mybrand\controller\Factory::get($controllerName, $parameters);
+    $controller->action($action);
 }

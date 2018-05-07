@@ -6,12 +6,15 @@
 namespace app;
 
 /**
- *
+ * Install controller
  *
  * @author Mendel <mendel@zzzlab.com>
  */
 class InstallController extends \mybrand\controller\AbstractController
 {
+    /**
+     * Default action - install
+     */
     public function defaultAction()
     {
         $this->db->executeWrite('

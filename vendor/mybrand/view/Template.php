@@ -6,26 +6,52 @@
 namespace mybrand\view;
 
 /**
- *
+ * Main class for template module
+ * Render template data etc
  *
  * @author Mendel <mendel@zzzlab.com>
  */
 class Template
 {
+    /**
+     * @var string folder where located templates
+     */
     public static $templateFolder;
+    
+    /**
+     * @var string data global for all templates
+     */
     public static $globalVar;
+    
+    /**
+     * @var string template name for current template
+     */
     protected $template;
+    
+    /**
+     * @var array data for current template
+     */
     protected $data;
     
-    public function __construct($template, $data = [])
+    /**
+     * Constructor
+     * @param string $template
+     * @param array $data
+     */
+    public function __construct(string $template, array $data = [])
     {
         $this->template = $template;
         $this->data = $data;
     }
 
-    public function render()
+    /**
+     * Render this template and return result
+     * @return string
+     * @throws \Exception
+     */
+    public function render() : string
     {
-        $_ = new \mybrand\util\Lang('/templ/' . $this->template);
+        $_ = new \mybrand\core\Lang('/templ/' . $this->template);
         extract(static::$globalVar);
         extract($this->data);
         if (!$this->exist()) {
@@ -33,20 +59,28 @@ class Template
         }
         //
         ob_start();
-        require $this->getFilename($this->template);
+        require $this->getFilename();
         $result = ob_get_contents();
         ob_end_clean();
         return $result;
     }
     
-    protected function getFilename($template)
+    /**
+     * Get filename for current template
+     * @return string
+     */
+    protected function getFilename() : string
     {
-        return static::$templateFolder . $template . '.php';
+        return static::$templateFolder . $this->template . '.php';
     }
 
-    public function exist()
+    /**
+     * Check if this template exist
+     * @return bool
+     */
+    public function exist() : bool
     {
-        $filename = $this->getFilename($this->template);
+        $filename = $this->getFilename();
         return file_exists($filename);
     }
 }

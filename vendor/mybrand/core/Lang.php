@@ -3,23 +3,50 @@
  * @copyright (c) 2018 Mendel <mendel@zzzlab.com>
  * @license see license.txt
  */
-namespace mybrand\util;
+namespace mybrand\core;
 
 /**
- *
+ * Language helper for short access to i18n strings
  *
  * @author Mendel <mendel@zzzlab.com>
  */
 class Lang
 {
+    /**
+     * @var string langSpace (file where stored strings) where located default strings
+     */
     public static $defaultLangSpace = 'default';
+    
+    /**
+     * @var string default language
+     */
     public static $defaultLang = 'eng';
+    
+    /**
+     * @var string current language
+     */
     public static $lang = 'eng';
+    
+    /**
+     * @var string folder where stored lang files
+     */
     public static $langFolder;
+    
+    /**
+     * @var string current component id (name)
+     */
     protected $componentId;
+    
+    /**
+     * @var array lang data cache
+     */
     protected static $langData = [];
 
-    public function __construct($componentId)
+    /**
+     * Constructor
+     * @param string $componentId
+     */
+    public function __construct(string $componentId)
     {
         $this->componentId = $componentId;
         $this->tryLoadLangData(static::$lang, $componentId);
@@ -28,7 +55,12 @@ class Lang
         $this->tryLoadLangData(static::$defaultLang, static::$defaultLangSpace);
     }
     
-    protected function tryLoadLangData($lang, $componentId)
+    /**
+     * Try load file with some lang data (if exist)
+     * @param string $lang needed lang
+     * @param string $componentId needed component id
+     */
+    protected function tryLoadLangData(string $lang, string $componentId)
     {
         if (!isset(static::$langData[$lang][$componentId])) {
             $filename = static::$langFolder . $lang . '/' . $componentId . '.json';
@@ -39,7 +71,13 @@ class Lang
         }
     }
 
-    public function __get($name)
+    /**
+     * Get some lang string (main function)
+     * @param string $name string id
+     * @return string
+     * @throws \Exception
+     */
+    public function __get($name) : string
     {
         $result = $this->tryGetString(static::$lang, $this->componentId, $name);
         if (is_null($result)) {
@@ -57,6 +95,13 @@ class Lang
         return $result;
     }
     
+    /**
+     * Try get string (if exist - get string, if not - get null
+     * @param string $lang
+     * @param string $componentId
+     * @param string $name
+     * @return mixed
+     */
     protected function tryGetString($lang, $componentId, $name)
     {
         if (isset(static::$langData[$lang][$componentId][$name])) {

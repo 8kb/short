@@ -6,12 +6,15 @@
 namespace app;
 
 /**
- *
+ * Page controller
  *
  * @author Mendel <mendel@zzzlab.com>
  */
 class PageController extends \mybrand\controller\AbstractController
 {
+    /**
+     * About page
+     */
     public function aboutAction()
     {
         echo template('layout', [
@@ -23,6 +26,9 @@ class PageController extends \mybrand\controller\AbstractController
         ]);
     }
     
+    /**
+     * Rules page
+     */
     public function rulesAction()
     {
         echo template('layout', [

@@ -6,33 +6,43 @@
 namespace app;
 
 /**
- *
+ * Index controller
+ * Show form or save result
  *
  * @author Mendel <mendel@zzzlab.com>
  */
 class IndexController extends \mybrand\controller\AbstractController
 {
+    /**
+     * Default action. Choise next action
+     */
     public function defaultAction()
     {
         if (post()->exist('short')) {
-            $this->saveResult();
+            $this->action('result');
         } else {
-            $this->showForm();
+            $this->action('form');
         }
     }
     
-    protected function showForm()
+    /**
+     * Internal action for show form
+     */
+    protected function formAction()
     {
         echo template('layout', [
-            'title'=>$this->lang->form['title'],
+            'title'=>$this->lang->title,
             'content'=>template('index/form', [
-                'header'=>$this->lang->form['header'],
-                'text'=>$this->lang->form['text']
+                'header'=>$this->lang->header,
+                'text'=>$this->lang->text
             ])
         ]);
     }
     
-    protected function saveResult()
+    /**
+     * Internal action for show and save result
+     */
+    protected function resultAction()
     {
         $shortForm = post()->getSafeArray('short');
         $id = $this->db->table('short')->insert([
@@ -45,10 +55,10 @@ class IndexController extends \mybrand\controller\AbstractController
         $shortId = base_convert($id, 10, 36);
         $shortUrl = $this->config['urlPrefix'].$shortId;
         echo template('layout', [
-            'title'=>$this->lang->result['title'],
+            'title'=>$this->lang->title,
             'content'=>template('index/result', [
-                'header'=>$this->lang->result['header'],
-                'text'=>$this->lang->result['text'],
+                'header'=>$this->lang->header,
+                'text'=>$this->lang->text,
                 'url'=>$shortForm->getString('url'),
                 'shortUrl'=>$shortUrl
             ])

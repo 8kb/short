@@ -1,4 +1,7 @@
 <?php
+/**
+ * Route URL
+ */
 $pathParts = explode('/', $path);
 if ($path == '') {
     action('index');
@@ -8,5 +11,5 @@ if ($path == '') {
 } elseif(count($pathParts) == 2) {
     action($pathParts[0].':'.$pathParts[1]);
 } else {
-    throw new \util\http\NotFoundException();
+    throw new \mybrand\core\NotFoundException();
 }

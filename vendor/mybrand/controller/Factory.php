@@ -6,32 +6,43 @@
 namespace mybrand\controller;
 
 /**
- *
+ * Controller factory
  *
  * @author Mendel <mendel@zzzlab.com>
  */
 class Factory
 {
+    /**
+     * @var array global data storage (for all controllers)
+     */
     public static $globalVar = [];
     
-    public static function doAction(string $route, array $param)
+    /**
+     * Get prepared controller
+     * @param string $controllerName controllers name
+     * @param array $parameters controller parameters
+     * @return \mybrand\controller\AbstractController
+     * @throws \mybrand\core\NotFoundException
+     */
+    public static function get(string $controllerName, array $parameters) : AbstractController
     {
-        if (haveStr($route, ':')) {
-            list($controllerName, $action) = explode(':', $route, 2);
-        } else {
-            $controllerName = $route;
-            $action = 'default';
+        $className = static::getClassName($controllerName);
+        if (!class_exists($className)) {
+            throw new \mybrand\core\NotFoundException();
         }
-        $lang = new \mybrand\util\Lang('app/'.$controllerName.'/'.$action);
+        return new $className($controllerName, $parameters);
+    }
+    
+    /**
+     * Get class name
+     * @param string $controllerName controller name
+     * @return string
+     */
+    protected static function getClassName(string $controllerName) : string
+    {
         $controllerParts = explode('/', $controllerName);
         $lastId = count($controllerParts) -1;
         $controllerParts[$lastId] = ucfirst($controllerParts[$lastId]);
-        $className = '\\app\\'. implode('\\', $controllerParts) . 'Controller';
-        $actionName = $action.'Action';
-        if (!class_exists($className)) {
-            throw new \mybrand\http\NotFoundException();
-        }
-        $controller = new $className($lang, $param);
-        $controller->$actionName();
+        return '\\app\\'. implode('\\', $controllerParts) . 'Controller';
     }
 }

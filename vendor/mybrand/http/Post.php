@@ -6,12 +6,15 @@
 namespace mybrand\http;
 
 /**
- *
+ * Safe _POST array
  *
  * @author Mendel <mendel@zzzlab.com>
  */
-class Post extends \mybrand\util\SafeArray
+class Post extends SafeArray
 {
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         if (isset($_POST)) {

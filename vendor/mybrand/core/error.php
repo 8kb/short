@@ -3,6 +3,10 @@
  * @copyright (c) 2018 Mendel <mendel@zzzlab.com>
  * @license see license.txt
  */
+
+/**
+ * Simple error handling code
+ */
 ini_set('error_reporting', E_ALL);
 if (isset($config['debug']) and $config['debug']) {
     define('DEBUG', true);
