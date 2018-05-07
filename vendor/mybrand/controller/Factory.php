@@ -16,7 +16,7 @@ class Factory
     
     public static function doAction(string $route, array $param)
     {
-        if(haveStr($route, ':')) {
+        if (haveStr($route, ':')) {
             list($controllerName, $action) = explode(':', $route, 2);
         } else {
             $controllerName = $route;
@@ -28,7 +28,7 @@ class Factory
         $controllerParts[$lastId] = ucfirst($controllerParts[$lastId]);
         $className = '\\app\\'. implode('\\', $controllerParts) . 'Controller';
         $actionName = $action.'Action';
-        if(!class_exists($className)) {
+        if (!class_exists($className)) {
             throw new \mybrand\http\NotFoundException();
         }
         $controller = new $className($lang, $param);

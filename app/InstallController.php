@@ -23,7 +23,7 @@ class InstallController extends \mybrand\controller\AbstractController
               `ip` varchar(16) NOT NULL,
                 PRIMARY KEY (`id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT = 100;
-        ',[]);
+        ', []);
         echo template('minimalLayout', [
             'title'=>$this->lang->title,
             'content'=> template('article', [

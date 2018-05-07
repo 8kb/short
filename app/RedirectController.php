@@ -17,7 +17,7 @@ class RedirectController extends \mybrand\controller\AbstractController
         $id = base_convert($this->shortId, 36, 10);
         $table = $this->db->table('short');
         $short = $table->find(['id'=>$id]);
-        if(!$short) {
+        if (!$short) {
             throw new \mybrand\http\NotFoundException();
         }
         $table->update(['updated'=>time()], ['id'=>$id]);

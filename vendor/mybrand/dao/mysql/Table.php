@@ -28,7 +28,7 @@ class Table extends \mybrand\dao\pdo\table\AbstractTable
      */
     public function update(array $data, $where = null)
     {
-        if(!is_null($where)) {
+        if (!is_null($where)) {
             $this->where($where);
         }
         if (!$this->where) {
@@ -44,7 +44,7 @@ class Table extends \mybrand\dao\pdo\table\AbstractTable
      */
     public function delete($where = null)
     {
-        if(!is_null($where)) {
+        if (!is_null($where)) {
             $this->where($where);
         }
         if (!$this->where) {
@@ -62,7 +62,7 @@ class Table extends \mybrand\dao\pdo\table\AbstractTable
      */
     public function findAll($where = null): \Traversable
     {
-        if(!is_null($where)) {
+        if (!is_null($where)) {
             $this->where($where);
         }
         if (!$this->where) {
@@ -86,13 +86,13 @@ class Table extends \mybrand\dao\pdo\table\AbstractTable
      */
     public function find($where = null): array
     {
-        if(!is_null($where)) {
+        if (!is_null($where)) {
             $this->where($where);
         }
         $this->limit(1);
         $result = $this->findAll();
         $record = $result->current();
-        if(empty($record)) {
+        if (empty($record)) {
             $record = [];
         }
         return $record;
@@ -106,7 +106,7 @@ class Table extends \mybrand\dao\pdo\table\AbstractTable
      */
     public function count($where = null): int
     {
-        if(!is_null($where)) {
+        if (!is_null($where)) {
             $this->where($where);
         }
         if (!$this->where) {

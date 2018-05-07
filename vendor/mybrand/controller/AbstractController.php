@@ -23,9 +23,9 @@ abstract class AbstractController
     
     public function __get($name)
     {
-        if(isset($this->param[$name])) {
+        if (isset($this->param[$name])) {
             return $this->param[$name];
-        } elseif(isset(Factory::$globalVar[$name])) {
+        } elseif (isset(Factory::$globalVar[$name])) {
             return Factory::$globalVar[$name];
         } else {
             return null;
@@ -34,7 +34,7 @@ abstract class AbstractController
     
     public function __call($name, $arguments)
     {
-        if(endsBy($name, 'Action')) {
+        if (endsBy($name, 'Action')) {
             throw new \mybrand\http\NotFoundException();
         } else {
             throw new \BadFunctionCallException();

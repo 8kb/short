@@ -7,10 +7,10 @@ try {
     $path = substr(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), 1); // remove first '/'
     require HOME.'/main.php';
 } catch (Exception $e) {
-    if(is_a($e, '\mybrand\http\NotFoundException')) {
+    if (is_a($e, '\mybrand\http\NotFoundException')) {
         header("HTTP/1.0 404 Not Found");
         action('error:notfound');
-    } elseif(is_a($e, '\mybrand\http\ForbiddenException')) {
+    } elseif (is_a($e, '\mybrand\http\ForbiddenException')) {
         header("HTTP/1.0 403 Forbidden");
         action('error:forbidden');
     } else {
@@ -20,7 +20,6 @@ try {
         if (ob_get_level()) {
             @ob_end_clean();
         }
-        action('error:internal',['exception'=>$e]);
+        action('error:internal', ['exception'=>$e]);
     }
 }
-

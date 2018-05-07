@@ -77,7 +77,7 @@ abstract class AbstractTable implements \mybrand\dao\TableInterface
     
     public function fixState()
     {
-        foreach(['where', 'fields', 'limit', 'offset', 'order', 'distinct'] as $key) {
+        foreach (['where', 'fields', 'limit', 'offset', 'order', 'distinct'] as $key) {
             $this->savedState[$key] = $this->$key;
         }
     }
@@ -87,7 +87,7 @@ abstract class AbstractTable implements \mybrand\dao\TableInterface
         $this->sql = '';
         $this->parameters = [];
         //
-        foreach(['where', 'fields', 'limit', 'offset', 'order', 'distinct'] as $key) {
+        foreach (['where', 'fields', 'limit', 'offset', 'order', 'distinct'] as $key) {
             $this->$key = $this->savedState[$key];
         }
     }

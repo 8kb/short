@@ -28,7 +28,7 @@ class Template
         $_ = new \mybrand\util\Lang('/templ/' . $this->template);
         extract(static::$globalVar);
         extract($this->data);
-        if(!$this->exist()) {
+        if (!$this->exist()) {
             throw new \Exception('Unknown template ' . $this->template);
         }
         //

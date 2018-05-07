@@ -11,7 +11,7 @@ function template($templateName, $data = [])
 
 function showMany($data)
 {
-    if(!is_array($data)) {
+    if (!is_array($data)) {
         throw new \Exception('ShowArray need array!');
     }
     return implode(PHP_EOL, $data);
@@ -19,12 +19,12 @@ function showMany($data)
 
 function addAsset($type, $value)
 {
-    \mybrand\view\Assets::addAsset($type, $value);    
+    \mybrand\view\Assets::addAsset($type, $value);
 }
 
 function assetStart()
 {
-    \mybrand\view\Assets::assetStart();    
+    \mybrand\view\Assets::assetStart();
 }
 
 function assetEnd($type)

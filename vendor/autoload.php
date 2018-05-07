@@ -5,7 +5,7 @@
  */
 spl_autoload_register(function ($class) {
     $parts = explode('\\', $class);
-    if($parts[0] == 'app') {
+    if ($parts[0] == 'app') {
         $filename = HOME.'/'.implode('/', $parts).'.php';
     } else {
         $filename = HOME.'/vendor/'.implode('/', $parts).'.php';
@@ -14,4 +14,3 @@ spl_autoload_register(function ($class) {
         require_once($filename);
     }
 });
-

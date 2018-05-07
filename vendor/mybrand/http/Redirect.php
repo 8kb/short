@@ -24,5 +24,4 @@ class Redirect
         }
         header('Location: '.$url);
     }
-    
 }

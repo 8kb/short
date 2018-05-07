@@ -14,7 +14,7 @@ class Post extends \mybrand\util\SafeArray
 {
     public function __construct()
     {
-        if(isset($_POST)) {
+        if (isset($_POST)) {
             $array = $_POST;
         } else {
             $array = [];

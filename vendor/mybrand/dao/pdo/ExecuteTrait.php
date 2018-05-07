@@ -25,7 +25,7 @@ trait ExecuteTrait
             throw new \PdoException($statement->errorInfo());
         }
         foreach ($statement as $line) {
-            if(!empty($line)) {
+            if (!empty($line)) {
                 yield $line;
             } else {
                 yield [];

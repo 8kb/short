@@ -14,7 +14,7 @@ class Get extends \mybrand\util\SafeArray
 {
     public function __construct()
     {
-        if(isset($_GET)) {
+        if (isset($_GET)) {
             $array = $_GET;
         } else {
             $array = [];

@@ -14,7 +14,7 @@ class IndexController extends \mybrand\controller\AbstractController
 {
     public function defaultAction()
     {
-        if(post()->exist('short')) {
+        if (post()->exist('short')) {
             $this->saveResult();
         } else {
             $this->showForm();
@@ -52,6 +52,6 @@ class IndexController extends \mybrand\controller\AbstractController
                 'url'=>$shortForm->getString('url'),
                 'shortUrl'=>$shortUrl
             ])
-        ]);        
+        ]);
     }
 }

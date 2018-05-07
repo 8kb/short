@@ -6,5 +6,6 @@
 
 function action(string $route, $param = [])
 {
-    \mybrand\controller\Factory::doAction($route, $param);;
+    \mybrand\controller\Factory::doAction($route, $param);
+    ;
 }

@@ -30,9 +30,9 @@ class Lang
     
     protected function tryLoadLangData($lang, $componentId)
     {
-        if(!isset(static::$langData[$lang][$componentId])) {
+        if (!isset(static::$langData[$lang][$componentId])) {
             $filename = static::$langFolder . $lang . '/' . $componentId . '.json';
-            if(file_exists($filename)) {
+            if (file_exists($filename)) {
                 $data = file_get_contents($filename);
                 static::$langData[$lang][$componentId] = json_decode($data, true);
             }
@@ -42,16 +42,16 @@ class Lang
     public function __get($name)
     {
         $result = $this->tryGetString(static::$lang, $this->componentId, $name);
-        if(is_null($result)) {
+        if (is_null($result)) {
             $result = $this->tryGetString(static::$defaultLang, $this->componentId, $name);
         }
-        if(is_null($result)) {
+        if (is_null($result)) {
             $result = $this->tryGetString(static::$lang, static::$defaultLangSpace, $name);
         }
-        if(is_null($result)) {
+        if (is_null($result)) {
             $result = $this->tryGetString(static::$defaultLang, static::$defaultLangSpace, $name);
         }
-        if(is_null($result)) {
+        if (is_null($result)) {
             throw new \Exception('Unknown lang data ' . $this->componentId . ':' . $name);
         }
         return $result;
@@ -59,7 +59,7 @@ class Lang
     
     protected function tryGetString($lang, $componentId, $name)
     {
-        if(isset(static::$langData[$lang][$componentId][$name])) {
+        if (isset(static::$langData[$lang][$componentId][$name])) {
             return static::$langData[$lang][$componentId][$name];
         } else {
             return null;
