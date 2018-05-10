@@ -3,7 +3,7 @@
  * @copyright (c) 2018 Mendel <mendel@zzzlab.com>
  * @license see license.txt
  */
-namespace app;
+namespace controller;
 
 /**
  * Error controller
@@ -45,7 +45,8 @@ class ErrorController extends \mybrand\controller\AbstractController
      */
     public function internalAction()
     {
-        echo template('minimalLayout', [
+        @ob_end_clean();
+        echo template('layout', [
             'title'=>$this->lang->title,
             'content'=> template('error/internal', [
                 'header'=>$this->lang->header,

@@ -18,7 +18,7 @@ require_once 'vendor/mybrand/view/functions.php';
 // configure lang
 \mybrand\core\Lang::$langFolder = dirname(__FILE__).'/lang/';
 // configure controller
-\mybrand\controller\Factory::$globalVar['config'] = $config['app'];
+\mybrand\controller\Factory::$globalVar['config'] = $config['controller'];
 // configure DAO
 $db = new \mybrand\dao\mysql\Dao(
         $config['db']['host'],

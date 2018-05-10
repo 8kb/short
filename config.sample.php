@@ -6,7 +6,7 @@
 return [
     'debug'=> true, // Enable debug mode. For prodaction - disabled/comment
     'install'=>true, // Install script. For prodaction - disabled/comment 
-    'app'=>[ // Config for controllers. 2DO: port config system from DryCart
+    'controller'=>[ // Config for controllers. 2DO: port config system from DryCart
         'urlPrefix' => 'https:\\\\short.8kb.ru\\', // Prefix added to short url (protocol, domain, folder..)
     ],
     'template'=>[ // Array of parameters available in template blocks

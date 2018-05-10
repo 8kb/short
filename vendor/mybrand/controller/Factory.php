@@ -43,6 +43,6 @@ class Factory
         $controllerParts = explode('/', $controllerName);
         $lastId = count($controllerParts) -1;
         $controllerParts[$lastId] = ucfirst($controllerParts[$lastId]);
-        return '\\app\\'. implode('\\', $controllerParts) . 'Controller';
+        return '\\controller\\'. implode('\\', $controllerParts) . 'Controller';
     }
 }

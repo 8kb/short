@@ -3,7 +3,7 @@
  * @copyright (c) 2018 Mendel <mendel@zzzlab.com>
  * @license see license.txt
  */
-namespace app;
+namespace controller;
 
 /**
  * Redirect controller
