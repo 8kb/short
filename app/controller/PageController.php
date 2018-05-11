@@ -17,13 +17,13 @@ class PageController extends \mybrand\controller\AbstractController
      */
     public function aboutAction()
     {
-        echo template('layout', [
+        return s('result')->show(template('layout', [
             'title'=>$this->lang->title,
             'content'=>template('article', [
                 'header'=>$this->lang->header,
                 'text'=> $this->lang->text
             ])
-        ]);
+        ]));
     }
     
     /**
@@ -31,12 +31,12 @@ class PageController extends \mybrand\controller\AbstractController
      */
     public function rulesAction()
     {
-        echo template('layout', [
+        return s('result')->show(template('layout', [
             'title'=>$this->lang->title,
             'content'=>template('article', [
                 'header'=>$this->lang->header,
                 'text'=> $this->lang->text
             ])
-        ]);
+        ]));
     }
 }

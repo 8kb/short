@@ -18,10 +18,10 @@ class IndexController extends \mybrand\controller\AbstractController
      */
     public function defaultAction()
     {
-        if (post()->exist('short')) {
-            $this->action('result');
+        if (s('post')->exist('short')) {
+            return $this->action('result');
         } else {
-            $this->action('form');
+            return $this->action('form');
         }
     }
     
@@ -30,13 +30,13 @@ class IndexController extends \mybrand\controller\AbstractController
      */
     protected function formAction()
     {
-        echo template('layout', [
+        return s('result')->show(template('layout', [
             'title'=>$this->lang->title,
             'content'=>template('index/form', [
                 'header'=>$this->lang->header,
                 'text'=>$this->lang->text
             ])
-        ]);
+        ]));
     }
     
     /**
@@ -44,24 +44,18 @@ class IndexController extends \mybrand\controller\AbstractController
      */
     protected function resultAction()
     {
-        $shortForm = post()->getSafeArray('short');
-        $id = $this->db->table('short')->insert([
-            'url'=>$shortForm->getString('url'),
-            'created'=>time(),
-            'updated'=>time(),
-            'ip'=>$_SERVER['REMOTE_ADDR']
-        ]);
+        $fullUrl = s('post')->getSafeArray('short')->getString('url');
+        $shortId = s('shorter')->getShortId($fullUrl);
+        $shortUrl = $this->urlPrefix.$shortId;
         //
-        $shortId = base_convert($id, 10, 36);
-        $shortUrl = $this->config['urlPrefix'].$shortId;
-        echo template('layout', [
+        return s('result')->show(template('layout', [
             'title'=>$this->lang->title,
             'content'=>template('index/result', [
                 'header'=>$this->lang->header,
                 'text'=>$this->lang->text,
-                'url'=>$shortForm->getString('url'),
+                'url'=>$fullUrl,
                 'shortUrl'=>$shortUrl
             ])
-        ]);
+        ]));
     }
 }

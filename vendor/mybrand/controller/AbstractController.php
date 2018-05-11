@@ -41,12 +41,13 @@ abstract class AbstractController
     /**
      * Execute action
      * @param string $action action name
+     * @return \mybrand\core\ResultInterface
      */
-    public function action(string $action)
+    public function action(string $action) : \mybrand\core\ResultInterface
     {
         $this->lang = new \mybrand\core\Lang('app/'.$this->selfName.'/'.$action);
         $actionName = $action.'Action';
-        $this->$actionName();
+        return $this->$actionName();
     }
 
     /**
@@ -58,8 +59,6 @@ abstract class AbstractController
     {
         if (isset($this->parameters[$name])) {
             return $this->parameters[$name];
-        } elseif (isset(Factory::$globalVar[$name])) {
-            return Factory::$globalVar[$name];
         } else {
             return null;
         }

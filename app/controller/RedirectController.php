@@ -18,13 +18,7 @@ class RedirectController extends \mybrand\controller\AbstractController
      */
     public function defaultAction()
     {
-        $id = base_convert($this->shortId, 36, 10);
-        $table = $this->db->table('short');
-        $short = $table->find(['id'=>$id]);
-        if (!$short) {
-            throw new \mybrand\core\NotFoundException();
-        }
-        $table->update(['updated'=>time()], ['id'=>$id]);
-        redirect($short['url']);
+        $url = s('shorter')->getFullUrl($this->shortId);
+        return s('result')->redirect($url);
     }
 }

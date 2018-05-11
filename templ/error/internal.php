@@ -2,7 +2,7 @@
     <div class="col-3">
         <h1><?=$header;?></h1>
         <p><?=$text;?></p>
-        <?php if (defined('DEBUG')): ?>
+        <?php if ($debug): ?>
         <table class="table table-striped">
             <tbody>
                 <tr>

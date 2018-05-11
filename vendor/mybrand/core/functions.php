@@ -5,6 +5,33 @@
  */
 
 /**
+ * Sugar for service locator
+ * @param string $name service name
+ * @return mixed
+ */
+function s(string $name)
+{
+    return \mybrand\core\ServiceLocator::get($name);
+}
+
+/**
+ * Execute action
+ * @param string $route action route
+ * @param array $parameters action parameters
+ */
+function action(string $route, array $parameters = []) : \mybrand\core\ResultInterface
+{
+    if (haveStr($route, ':')) {
+        list($controllerName, $action) = explode(':', $route, 2);
+    } else {
+        $controllerName = $route;
+        $action = 'default';
+    }
+    $controller = s('controller')->get($controllerName, $parameters);
+    return $controller->action($action);
+}
+
+/**
  * Check if string contain $needle
  * @param string $haystack
  * @param string $needle

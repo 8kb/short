@@ -27,12 +27,12 @@ class InstallController extends \mybrand\controller\AbstractController
                 PRIMARY KEY (`id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT = 100;
         ', []);
-        echo template('minimalLayout', [
+        return s('result')->show(template('minimalLayout', [
             'title'=>$this->lang->title,
             'content'=> template('article', [
                 'header'=>$this->lang->header,
                 'text'=>$this->lang->text
             ]),
-        ]);
+        ]));
     }
 }

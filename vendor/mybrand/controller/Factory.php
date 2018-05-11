@@ -13,10 +13,19 @@ namespace mybrand\controller;
 class Factory
 {
     /**
-     * @var array global data storage (for all controllers)
+     * @var array default configs value for each controller
      */
-    public static $globalVar = [];
+    protected $defaultParameters = [];
     
+    /**
+     * Constructor
+     * @param array $defaultParameters default parameters array
+     */
+    public function __construct(array $defaultParameters)
+    {
+        $this->defaultParameters = $defaultParameters;
+    }
+
     /**
      * Get prepared controller
      * @param string $controllerName controllers name
@@ -24,11 +33,14 @@ class Factory
      * @return \mybrand\controller\AbstractController
      * @throws \mybrand\core\NotFoundException
      */
-    public static function get(string $controllerName, array $parameters) : AbstractController
+    public function get(string $controllerName, array $parameters) : AbstractController
     {
-        $className = static::getClassName($controllerName);
+        $className = $this->getClassName($controllerName);
         if (!class_exists($className)) {
             throw new \mybrand\core\NotFoundException();
+        }
+        if (isset($this->defaultParameters[$controllerName])) {
+            $parameters = array_merge($this->defaultParameters[$controllerName], $parameters);
         }
         return new $className($controllerName, $parameters);
     }
@@ -38,7 +50,7 @@ class Factory
      * @param string $controllerName controller name
      * @return string
      */
-    protected static function getClassName(string $controllerName) : string
+    protected function getClassName(string $controllerName) : string
     {
         $controllerParts = explode('/', $controllerName);
         $lastId = count($controllerParts) -1;

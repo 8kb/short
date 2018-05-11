@@ -17,13 +17,13 @@ class ErrorController extends \mybrand\controller\AbstractController
      */
     public function notfoundAction()
     {
-        echo template('layout', [
+        return s('result')->showNotFound(template('layout', [
             'title'=>$this->lang->title,
             'content'=> template('article', [
                 'header'=>$this->lang->header,
                 'text'=>$this->lang->text
             ]),
-        ]);
+        ]));
     }
     
     /**
@@ -31,13 +31,13 @@ class ErrorController extends \mybrand\controller\AbstractController
      */
     public function forbiddenAction()
     {
-        echo template('layout', [
+        return s('result')->showForbidden(template('layout', [
             'title'=>$this->lang->title,
             'content'=> template('article', [
                 'header'=>$this->lang->header,
                 'text'=>$this->lang->text
             ]),
-        ]);
+        ]));
     }
     
     /**
@@ -45,14 +45,14 @@ class ErrorController extends \mybrand\controller\AbstractController
      */
     public function internalAction()
     {
-        @ob_end_clean();
-        echo template('layout', [
+        return s('result')->showInternal(template('layout', [
             'title'=>$this->lang->title,
             'content'=> template('error/internal', [
                 'header'=>$this->lang->header,
                 'text'=>$this->lang->text,
-                'exception'=>$this->exception
+                'exception'=>$this->exception,
+                'debug'=>s('config')->debug
             ]),
-        ]);
+        ]));
     }
 }

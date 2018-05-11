@@ -6,8 +6,10 @@
 return [
     'debug'=> true, // Enable debug mode. For prodaction - disabled/comment
     'install'=>true, // Install script. For prodaction - disabled/comment 
-    'controller'=>[ // Config for controllers. 2DO: port config system from DryCart
-        'urlPrefix' => 'https:\\\\short.8kb.ru\\', // Prefix added to short url (protocol, domain, folder..)
+    'controller'=>[ // Config for controllers
+        'index' => [
+            'urlPrefix' => 'https:\\\\short.8kb.ru\\', // Prefix added to short url (protocol, domain, folder..)
+        ],
     ],
     'template'=>[ // Array of parameters available in template blocks
         'favicon' => '/files/s-logo.png',
@@ -20,7 +22,7 @@ return [
             ['url'=>'\page\rules','ancor'=>'Rules'],
         ],
     ],
-    'db'=> [ // database config (now only MySQL)
+    'dao'=> [ // database config (now only MySQL)
         'host'=>'localhost',
         'baseName'=>'db_name',
         'username'=>'db_user',
