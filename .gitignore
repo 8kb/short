@@ -1,2 +1,6 @@
-/nbproject/
+/.gitignore
 /config.php
+/nbproject/
+/!trash/
+/correctPSR.bat
+/testPSR.bat

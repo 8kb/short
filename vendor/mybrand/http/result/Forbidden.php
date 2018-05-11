@@ -16,5 +16,5 @@ class Forbidden extends Found
     {
         header("HTTP/1.0 403 Forbidden");
         parent::execute();
-    }    
+    }
 }

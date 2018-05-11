@@ -18,9 +18,9 @@ class ServiceLocator
     
     public static function get($name)
     {
-        if(!isset(static::$storage[$name]) and isset(static::$factory[$name])) {
+        if (!isset(static::$storage[$name]) and isset(static::$factory[$name])) {
             static::createFromFactory($name);
-        } elseif(!isset(static::$storage[$name])) {
+        } elseif (!isset(static::$storage[$name])) {
             $class = static::getDefaultClassName($name);
             static::$storage[$name] = new $class();
         }
@@ -30,7 +30,7 @@ class ServiceLocator
     protected static function createFromFactory(string $name)
     {
         $factory = static::$factory[$name];
-        if(is_string($factory)) {
+        if (is_string($factory)) {
             static::$storage[$name] = new $factory();
         } else {
             static::$storage[$name] = $factory();

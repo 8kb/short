@@ -23,5 +23,4 @@ class Found implements \mybrand\core\ResultInterface
     {
         echo $this->content;
     }
-
 }
