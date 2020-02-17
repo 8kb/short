@@ -17,7 +17,7 @@ class InstallController extends \mybrand\controller\AbstractController
      */
     public function defaultAction()
     {
-        $this->db->executeWrite('
+        s('dao')->executeWrite('
             CREATE TABLE IF NOT EXISTS `short` (
               `id` bigint(11) NOT NULL AUTO_INCREMENT,
               `url` text NOT NULL,
